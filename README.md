@@ -10,8 +10,8 @@
 
 <p align="center">
   <img alt="Minecraft" src="https://img.shields.io/badge/Minecraft-26.2-3a7d44?style=flat-square">
-  <img alt="License" src="[https://img.shields.io/github/license/peregrintsz/full-brightness?style=flat-square">]
-  <img alt="Release" src="[https://img.shields.io/github/v/release/peregrintsz/full-brightness?style=flat-square">]
+  <img alt="License" src="[https://img.shields.io/github/license/peregrintsz/full-brightness?style=flat-square">
+  <img alt="Release" src="[https://img.shields.io/github/v/release/peregrintsz/full-brightness?style=flat-square">
 </p>
 
 <p align="center">
