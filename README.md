@@ -49,7 +49,7 @@ You can change the key in **Options → Controls → Key Binds**, under the *Ful
 
 ## Compatibility
 
-- Minecraft **26.2**, Fabric Loader, Fabric API.
+- Fabric Loader, Fabric API.
 - Other mods that change brightness or lighting may conflict with this one. If something looks wrong, try removing the other mod first, then open an issue.
 
 ## Building from source
