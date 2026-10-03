@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="Modrinth" src="https://img.shields.io/modrinth/dt/full-brightness?logo=modrinth&label=downloads&style=flat-square">
+  <img alt="Modrinth" src="https://img.shields.io/modrinth/dt/full-brightness-peregrint?logo=modrinth&label=downloads&style=flat-square">
   <img alt="License" src="https://img.shields.io/github/license/peregrintsz/full-brightness?style=flat-square">
   <img alt="Release" src="https://img.shields.io/github/v/release/peregrintsz/full-brightness?style=flat-square">
 </p>
