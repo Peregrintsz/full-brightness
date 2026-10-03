@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.svg" alt="Full Brightness logo" width="160" height="160">
+  <img src="https://raw.githubusercontent.com/peregrintsz/full-brightness/main/assets/icon.png" alt="Full Brightness logo" width="160" height="160">
 </p>
 
 <h1 align="center">Full Brightness</h1>
