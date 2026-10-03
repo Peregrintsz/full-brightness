@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.resources.Identifier;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 
 public class FullBrightnessClient implements ClientModInitializer {
 	private static final double FULL_GAMMA = 16.0;
@@ -23,8 +23,8 @@ public class FullBrightnessClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		toggleKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
 				"key.fullbrightness.toggle",
-				GLFW.GLFW_KEY_G,
-				CATEGORY
+				InputConstants.KEY_G,
+				KeyMapping.Category.MISC
 		));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -45,8 +45,7 @@ public class FullBrightnessClient implements ClientModInitializer {
 	}
 
 	private static void toggle(Minecraft client) {
-		if (client.options == null) return;
-		if (!enabled) {
+        if (!enabled) {
 			previousGamma = client.options.gamma().get();
 			enabled = true;
 		} else {
@@ -56,7 +55,6 @@ public class FullBrightnessClient implements ClientModInitializer {
 	}
 
 	private static void setGamma(Minecraft client, double value) {
-		if (client.options == null) return;
-		((OptionInstanceAccessor) (Object) client.options.gamma()).fullbrightness$setValue(value);
+        ((OptionInstanceAccessor) (Object) client.options.gamma()).fullbrightness$setValue(value);
 	}
 }

@@ -3,44 +3,52 @@ plugins {
 	id 'maven-publish'
 }
 
-repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+// Hangi Minecraft sürümü derlenecek: gradle.properties'teki varsayılan,
+// komut satırından -PmcVer=26.3 ile ezilebilir
+def mcVer = project.property("mcVer")
+
+def versionPropsFile = file("versions/${mcVer}/gradle.properties")
+if (!versionPropsFile.exists()) {
+	throw new GradleException("versions/${mcVer}/gradle.properties not found!")
 }
+def versionProps = new Properties()
+versionPropsFile.withInputStream { versionProps.load(it) }
+// Değerleri projeye aktar (project.minecraft_version vb. böyle çalışır)
+versionProps.each { k, v -> project.ext.set(k.toString(), v.toString()) }
 
 dependencies {
-	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 }
 
 processResources {
-	def version = project.version
-	inputs.property "version", version
+	inputs.property "version", project.version
+	inputs.property "minecraft_version", project.minecraft_version
+	inputs.property "minecraft_depends", project.minecraft_depends
+	inputs.property "loader_version", project.loader_version
+
+	filteringCharset "UTF-8"
 
 	filesMatching("fabric.mod.json") {
-		expand "version": version
+		expand "version": project.version,
+				"minecraft_version": project.minecraft_version,
+				"minecraft_depends": project.minecraft_depends,
+				"loader_version": project.loader_version
 	}
 }
 
+def javaVer = Integer.parseInt(project.java_version)
+
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = javaVer
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.toVersion(javaVer)
+	targetCompatibility = JavaVersion.toVersion(javaVer)
 }
 
 jar {
@@ -48,11 +56,10 @@ jar {
 	inputs.property "projectName", projectName
 
 	from("LICENSE") {
-		rename { "${it}_$projectName"}
+		rename { "${it}_$projectName" }
 	}
 }
 
-// configure the maven publication
 publishing {
 	publications {
 		create("mavenJava", MavenPublication) {
@@ -60,11 +67,6 @@ publishing {
 		}
 	}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
 	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
 	}
 }
