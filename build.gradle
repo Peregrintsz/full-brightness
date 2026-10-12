@@ -3,8 +3,6 @@ plugins {
 	id 'maven-publish'
 }
 
-// Hangi Minecraft sürümü derlenecek: gradle.properties'teki varsayılan,
-// komut satırından -PmcVer=26.3 ile ezilebilir
 def mcVer = project.property("mcVer")
 
 def versionPropsFile = file("versions/${mcVer}/gradle.properties")
@@ -13,7 +11,6 @@ if (!versionPropsFile.exists()) {
 }
 def versionProps = new Properties()
 versionPropsFile.withInputStream { versionProps.load(it) }
-// Değerleri projeye aktar (project.minecraft_version vb. böyle çalışır)
 versionProps.each { k, v -> project.ext.set(k.toString(), v.toString()) }
 
 dependencies {
