@@ -36,7 +36,7 @@ Full Brightness is a small client-side Fabric mod that makes the world fully lit
 
 1. Install [Fabric Loader](https://fabricmc.net/use/) for Minecraft.
 2. Download [Fabric API](https://modrinth.com/mod/fabric-api) and put it in your `mods` folder.
-3. Download Full Brightness from [Modrinth](https://modrinth.com/mod/full-brightness) or the [Releases](https://github.com/peregrintsz/full-brightness/releases) page and put the `.jar` in the same `mods` folder.
+3. Download Full Brightness from [Modrinth](https://modrinth.com/mod/full-brightness-peregrint) or the [Releases](https://github.com/peregrintsz/full-brightness-peregrint/releases) page and put the `.jar` in the same `mods` folder.
 4. Start the game.
 
 ## Usage
